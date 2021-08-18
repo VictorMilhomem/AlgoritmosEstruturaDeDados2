@@ -1,4 +1,4 @@
-exec = a.exe
+exec = a
 sources = $(wildcard *.c)
 objects = $(sources:.c=.o)
 
@@ -13,4 +13,4 @@ install:
 	make
 
 clean:
-	-rm *.o a.exe
+	-rm *.o a
