@@ -1,4 +1,4 @@
-exec = calculator
+exec = a.exe
 sources = $(wildcard *.c)
 objects = $(sources:.c=.o)
 
