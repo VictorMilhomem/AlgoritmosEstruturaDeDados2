@@ -142,3 +142,50 @@ int binary_search(int *vector, int start, int end, int value)
     }
 }
 
+
+/*
+* Function : partition(int *vector, int start, int end)
+* return the pivot for quicksort function
+*/
+
+int partition(int *vector, int low, int high)
+{
+    int pivot; int i;
+    pivot = *(vector+high); i = low-1;
+    for(int j = low; j <= high-1; j++)
+    {
+        if(*(vector+j) < pivot)
+        {
+            i += 1;
+            int aux = *(vector+i);
+            *(vector+i) = *(vector+j);
+            *(vector+j) = aux;
+        }
+    }
+    if (pivot < *(vector+i+1))
+    {
+        int aux = *(vector+i+1);
+        *(vector+i+1) = *(vector+high);
+        *(vector+high) = aux;   
+    }
+    return i+1;
+
+}
+
+
+/*
+* Function : quicksort(int *vector, int start, int end)
+* sort an array of integers
+* return void
+*/
+
+void quicksort(int *vector, int start, int end)
+{
+    int p;
+    if (start < end)
+    {
+        p = partition(vector, start, end);
+        quicksort(vector, start, p-1);
+        quicksort(vector, p+1, end);
+    }
+}
