@@ -7,5 +7,6 @@ int bin(int n, int k);
 int division(int n, int k);
 void hanoi(int n, char origin, char aux, char destine);
 int binary_search(int *vector, int start, int end, int value);
+void quicksort(int *vector, int start, int end);
 
 #endif // RECURSIVE_H
