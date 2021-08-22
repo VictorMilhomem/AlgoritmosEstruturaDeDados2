@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /*
-* Recursive Algorithms implemantation
+* Recursive Algorithms implementation
 */
 
 
