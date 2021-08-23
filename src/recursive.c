@@ -189,3 +189,34 @@ void quicksort(int *vector, int start, int end)
         quicksort(vector, p+1, end);
     }
 }
+
+
+
+/*
+* Function : count_number_two(int *vector, int n)
+* assumes n >= 0
+* return quantity of the digit 2 in a vector of integer
+*/
+int count_digit_two(int *vector, int n)
+{
+    int count; int temp; int aux;
+    if(n >= 0)
+    {
+        if(n == 0)
+            return 0;
+        else
+        {
+            temp = *(vector+n); count = 0;
+            while(temp > 0)
+            {
+                aux = temp % 10; temp = (int) temp / 10;
+                if(aux == 2)
+                    count = count + 1;
+            }
+            
+            return count_digit_two(vector, n-1) + count;
+        }
+    }
+    else
+        return -1;
+}
