@@ -220,3 +220,25 @@ int count_digit_two(int *vector, int n)
     else
         return -1;
 }
+
+
+/*
+* Function : polynomial_validation(int *vector, int x, int n)
+* assumes n >= 0
+* return the sum of (anxN + aN-1 xN-1 + ... + a1 x + a0.)
+*/
+int polynomial_validation(int *vector, int x, int n)
+{
+    int temp; int aux;
+    if(n >= 0)
+    {
+        if(n == 0)
+            return *(vector+n);
+        else
+        {   
+            return x * (*(vector+n)  + polynomial_validation(vector, x, n-1));
+        }
+    }
+    else
+        return -1;
+}
