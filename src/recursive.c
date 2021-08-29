@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
+#include "recursive.h"
+
+
+#define MAX_BUF_SIZE 10000
 /*
 * Recursive Algorithms implementation
 */
@@ -252,28 +257,28 @@ int polynomial_validation(int *vector, int x, int n)
 void merge(int *vector, int start, int middle, int end)
 {
     int first_position = start; int second_position = middle+1;
-    int *aux_vector = malloc(sizeof(aux_vector) * (end - start + 1));
+    int aux_vector[10001];
+    
     for(int i = 0; i < end - start + 1; i++)
     {
         if(second_position > end || (first_position <= middle && *(vector+first_position) < *(vector+second_position)))
         {
-            *(aux_vector+i) = *(vector+first_position);
+            aux_vector[i] = vector[first_position];
             first_position += 1;
         }
         else
         {
-            *(aux_vector+i) = *(vector+second_position);
+            aux_vector[i] = vector[second_position];
             second_position += 1;
         }
     }
 
     for(int j = 0; j < end - start + 1; j++)
     {
-        *(vector+j) = *(aux_vector+j);
+        vector[j] = aux_vector[j];
     }
-    free(aux_vector);
-}
 
+}
 
 
 /*

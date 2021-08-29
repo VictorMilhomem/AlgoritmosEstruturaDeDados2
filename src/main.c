@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+
 #include "recursive.h"
+
 
 int main(int argc, char argv[])
 {
-    int n[5] = {5, 4, 3, 2, 1};
-    merge_sort(n, 0, 4);
-    printf("elemento: %d\n", n[0]);
+    int n = power(-1, 2);
+    printf("%d", n);
     return 0;
 }
