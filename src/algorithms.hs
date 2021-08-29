@@ -1,3 +1,7 @@
+import Data.List
+import GHC.Types ( Any )
+import Distribution.FieldGrammar (List)
+
 oddNumber :: Integer -> Integer 
 oddNumber n
     | n < 1 = -1
@@ -38,4 +42,14 @@ division n k
 
 
 
+fib :: (Ord a, Num a, Num p) => a -> p
+fib n
+    | n <= 2 = 1
+    |otherwise = fib (n-1) + fib (n-2)
 
+-- return the n-th fibonacci number, using memorization
+fibn :: Num a => Int -> a
+fibn n = fibs !! n
+    where
+    fibs = 0 : 1 : map f [2..]
+    f n = fibs !! (n-1) + fibs !! (n-2)
