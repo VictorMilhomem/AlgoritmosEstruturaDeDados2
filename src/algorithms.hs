@@ -12,7 +12,7 @@ factorial n =
     if n >= 0 then 
         if n == 0 then 1
         else n * factorial (n-1)
-    else -1
+    else error "Negative number factorial Error"
 
 
 power :: (Num a2,Eq a2, Integral a1) => a2 -> a1 -> a2
@@ -23,13 +23,11 @@ power b n
     | otherwise = b * power b ((n-1)`quot`2) * power b ((n-1)`quot`2)
     
 
-
 bin :: Integral p => p -> p -> p
 bin n k
     | not(n >= 0 && n >= k && k >= 0) = error "Unexpected Error"
     | k == 0 = 1
     | otherwise = bin n (k-1) * (n-k+1) `quot` k
-
 
 
 division :: (Num a2, Integral a1) => a1 -> a1 -> a2
@@ -38,7 +36,6 @@ division n k
     | k == 0 = 0
     | mod n k == 0 = division n (k-1) + 1
     | otherwise = division n (k-1)
-
 
 
 fib :: (Ord a, Num a, Num p) => a -> p
@@ -62,5 +59,10 @@ paln xs i n
     | n == i = True
     | xs !! n == xs !! i = paln xs (i + 1) (n - 1)
     | otherwise = False
+
+
+
+
+
 
 

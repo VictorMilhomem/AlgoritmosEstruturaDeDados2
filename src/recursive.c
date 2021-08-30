@@ -235,7 +235,6 @@ int count_digit_two(int *vector, int n)
 */
 int polynomial_validation(int *vector, int x, int n)
 {
-    int temp; int aux;
     if(n >= 0)
     {
         if(n == 0)
