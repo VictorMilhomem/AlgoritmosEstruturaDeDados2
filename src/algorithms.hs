@@ -1,6 +1,5 @@
 import Data.List
-import GHC.Types ( Any )
-import Distribution.FieldGrammar (List)
+
 
 oddNumber :: Integer -> Integer 
 oddNumber n
@@ -53,3 +52,15 @@ fibn n = fibs !! n
     where
     fibs = 0 : 1 : map f [2..]
     f n = fibs !! (n-1) + fibs !! (n-2)
+
+
+-- return true if the [Char] is a palindrome
+-- assums the [Char] is lower case and with no spaces
+--  i >= 0 and n - i > 0 
+paln :: Eq a => [a] -> Int -> Int -> Bool
+paln xs i n 
+    | n == i = True
+    | xs !! n == xs !! i = paln xs (i + 1) (n - 1)
+    | otherwise = False
+
+
