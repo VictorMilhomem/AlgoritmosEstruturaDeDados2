@@ -62,12 +62,20 @@ division n k
     | otherwise = division n (k-1)
 
 
+{-
+- Function : fib (int n)
+- return the n-th fibonacci number
+-}
 fib :: (Ord a, Num a, Num p) => a -> p
 fib n
     | n <= 2 = 1
     |otherwise = fib (n-1) + fib (n-2)
 
--- return the n-th fibonacci number, using memorization
+
+{-
+- Function : fibn (int n)
+- return the n-th fibonacci number, using memorization
+-}
 fibn :: Num a => Int -> a
 fibn n = fibs !! n
     where
@@ -76,6 +84,7 @@ fibn n = fibs !! n
 
 
 {-
+- Function: paln (vector, int i, int n)
 - return true if the [Char] is a palindrome
 - assums the [Char] is lower case and with no spaces
 - i >= 0 and n - i > 0 
