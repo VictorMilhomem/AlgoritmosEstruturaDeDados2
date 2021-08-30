@@ -99,7 +99,7 @@ paln xs i n
 {-
 - Function : binarySearch(vector, int start, int end, int value)
 - assumes that the vector is sorted, end-start+1 >= 0
-- return the index K , K > 0 if vector[K] = value, or -1 if value ∉ vector[start...end]
+- return the index N , N > 0 if vector[N] = value, or -1 if value ∉ vector[start...end]
 -}
 binarySearch :: Ord t => [t] -> Int -> Int -> t -> Int
 binarySearch xs start end k =
@@ -109,4 +109,16 @@ binarySearch xs start end k =
         if xs !! m == k then m
         else if xs !! m > k then binarySearch xs start (m-1) k
         else binarySearch xs (m+1) end k
+
+
+
+
+sumVetor :: Num a => [a] -> Int -> Int -> a
+sumVetor xs start end = do
+    if start == end then xs !! end
+    else do
+        let s = (xs !! start) + (xs !! end)
+        if end - start == 1 then s
+        else
+            sumVetor xs (start+1) (end-1)  + s
 
