@@ -5,7 +5,7 @@ import Data.List
 - assumes n >= 1
 - returns the n-th odd natural number
 -}
-oddNumber :: Integer -> Integer 
+oddNumber :: Integer -> Integer
 oddNumber n
     | n < 1 = -1
     | otherwise = if n == 1 then 1 else oddNumber(n-1) + 2
@@ -16,9 +16,9 @@ oddNumber n
 - assumes n >= 0
 - returns the factorial of a number n
 -}
-factorial :: Integer -> Integer 
-factorial n = 
-    if n >= 0 then 
+factorial :: Integer -> Integer
+factorial n =
+    if n >= 0 then
         if n == 0 then 1
         else n * factorial (n-1)
     else error "Negative number factorial Error"
@@ -35,7 +35,7 @@ power b n
     | n == 0 = 1
     | even n = power b (n`quot`2) * power b (n`quot`2)
     | otherwise = b * power b ((n-1)`quot`2) * power b ((n-1)`quot`2)
-    
+
 
 {-
 - Function : bin (int n, int k)
@@ -90,7 +90,7 @@ fibn n = fibs !! n
 - i >= 0 and n - i > 0 
 -}
 palindrome :: Eq a => [a] -> Int -> Int -> Bool
-palindrome xs i n 
+palindrome xs i n
     | n == i = True
     | xs !! n == xs !! i = palindrome xs (i + 1) (n - 1)
     | otherwise = False
@@ -156,14 +156,12 @@ mergesort pred xs = merge pred (mergesort pred xs1) (mergesort pred xs2)
   where
     (xs1,xs2) = split xs
 
-split :: [a] -> ([a],[a])   
+split :: [a] -> ([a],[a])
 split (x:y:zs) = (x:xs,y:ys) where (xs,ys) = split zs
-split xs       = (xs,[]) 
+split xs       = (xs,[])
 
 merge :: (a -> a -> Bool) -> [a] -> [a] -> [a]
 merge pred xs []         = xs
 merge pred [] ys         = ys
 merge pred (x:xs) (y:ys) =
-  case pred x y of
-    True  -> x: merge pred xs (y:ys)
-    False -> y: merge pred (x:xs) ys
+  if pred x y then x: merge pred xs (y:ys) else y: merge pred (x:xs) ys
