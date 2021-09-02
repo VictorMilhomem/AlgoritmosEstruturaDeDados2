@@ -1,4 +1,5 @@
 import Data.List
+import Text.XHtml.Frameset (action)
 
 {-
 - Function : odd (int n)
@@ -89,10 +90,10 @@ fibn n = fibs !! n
 - assums the [Char] is lower case and with no spaces
 - i >= 0 and n - i > 0 
 -}
-paln :: Eq a => [a] -> Int -> Int -> Bool
-paln xs i n 
+palindrome :: Eq a => [a] -> Int -> Int -> Bool
+palindrome xs i n 
     | n == i = True
-    | xs !! n == xs !! i = paln xs (i + 1) (n - 1)
+    | xs !! n == xs !! i = palindrome xs (i + 1) (n - 1)
     | otherwise = False
 
 
@@ -122,3 +123,5 @@ sumVetor xs start end = do
         else
             sumVetor xs (start+1) (end-1)  + s
 
+
+    
