@@ -301,3 +301,19 @@ void merge_sort(int *vector, int start, int end)
         merge(vector, start, middle, end);
     }
 }
+
+
+/*
+* Function : recursiveFibonacci(unsigned long long int *cache, int n)
+* returns the n-th fibonacci number , using memorization
+*/
+unsigned long long int recursiveFibonacci(unsigned long long int *cache, int n)
+{
+	// If the cache holds -1 at the required index, it has not yet been computed.
+	if (cache[n] == -1) {
+		cache[n] = recursiveFibonacci(cache, n - 1) + recursiveFibonacci(cache, n - 2);
+	}
+	return cache[n];
+}
+
+

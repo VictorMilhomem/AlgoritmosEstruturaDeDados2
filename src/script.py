@@ -30,8 +30,7 @@ if __name__ == '__main__':
     for i in range(0, n+1):
         memory[i] = -1
 
-    print(paren(n, memory))
+    #print(paren(n, memory))
 
-    """
     fib_number = fib(n, memory)
-    print(fib_number)"""
+    print(fib_number)

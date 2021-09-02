@@ -1,5 +1,4 @@
 import Data.List
-import Text.XHtml.Frameset (action)
 
 {-
 - Function : odd (int n)
@@ -112,8 +111,11 @@ binarySearch xs start end k =
         else binarySearch xs (m+1) end k
 
 
-
-
+{-
+- Function : sumVector(vector, int start, int end)
+- assumes that  end-start+1 >= 0
+- return the sum of elements in the vector
+-}
 sumVetor :: Num a => [a] -> Int -> Int -> a
 sumVetor xs start end = do
     if start == end then xs !! end
@@ -124,4 +126,44 @@ sumVetor xs start end = do
             sumVetor xs (start+1) (end-1)  + s
 
 
-    
+{-
+- Function : qsort(vector)
+- sort the vector using a partition function as aux
+-}
+qsort :: Ord a => [a] -> [a]
+qsort []     = []
+qsort (x:xs) = qsort lesser ++ equal ++ qsort greater
+    where
+        (lesser,equal,greater) = part x xs ([],[x],[])
+
+
+part :: Ord a => a -> [a] -> ([a],[a],[a]) -> ([a],[a],[a])
+part _ [] (l,e,g) = (l,e,g)
+part p (x:xs) (l,e,g)
+    | x > p     = part p xs (l,e,x:g)
+    | x < p     = part p xs (x:l,e,g)
+    | otherwise = part p xs (l,x:e,g)
+
+
+{-
+- Function : mergesort(vector)
+- sort the vector using a merge and split functions as aux
+-}
+mergesort :: (a -> a -> Bool) -> [a] -> [a]
+mergesort pred []   = []
+mergesort pred [x]  = [x]
+mergesort pred xs = merge pred (mergesort pred xs1) (mergesort pred xs2)
+  where
+    (xs1,xs2) = split xs
+
+split :: [a] -> ([a],[a])   
+split (x:y:zs) = (x:xs,y:ys) where (xs,ys) = split zs
+split xs       = (xs,[]) 
+
+merge :: (a -> a -> Bool) -> [a] -> [a] -> [a]
+merge pred xs []         = xs
+merge pred [] ys         = ys
+merge pred (x:xs) (y:ys) =
+  case pred x y of
+    True  -> x: merge pred xs (y:ys)
+    False -> y: merge pred (x:xs) ys

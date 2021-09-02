@@ -12,6 +12,7 @@ void quicksort(int *vector, int start, int end);
 int count_digit_two(int *vector, int n);
 int polynomial_validation(int *vector, int x, int n);
 void merge_sort(int *vector, int start, int end);
+unsigned long long int recursiveFibonacci(unsigned long long int *cache, int n);
 
 
 #endif // RECURSIVE_H
