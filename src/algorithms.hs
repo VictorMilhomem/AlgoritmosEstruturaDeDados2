@@ -127,6 +127,21 @@ sumVetor xs start end = do
 
 
 {-
+- Function : squareRoot(int n, int low, int high)
+- assumes n ≥ 0 e low ≤ ⌊√(n)⌋ < high 
+- return ⌊√(n)⌋
+-}
+squareRoot :: Integral t => t -> t -> t -> t
+squareRoot n low high =
+    if high - low > 1 then do
+        let m = (low + high) `quot` 2
+        if m * m == n then m
+        else if m * m < n then squareRoot n (m+1) high
+        else squareRoot n low m
+    else low
+
+
+{-
 - Function : qsort(vector)
 - sort the vector using a partition function as aux
 -}
@@ -165,3 +180,14 @@ merge pred xs []         = xs
 merge pred [] ys         = ys
 merge pred (x:xs) (y:ys) =
   if pred x y then x: merge pred xs (y:ys) else y: merge pred (x:xs) ys
+
+
+{-
+- Function : poly_valiation(int vector, int x, int n)
+- assumes n >= 0
+- return the sum of (anxN + aN-1 xN-1 + ... + a1 x + a0.)
+-}
+poly_valiation :: Num t => [t] -> t -> Int -> t
+poly_valiation vector x n 
+    | n == 0 = vector !! n
+    | otherwise = x * ((vector !! n) + poly_valiation vector x (n-1))

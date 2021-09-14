@@ -25,12 +25,13 @@ def paren (n: int, memory: list)-> int:
 
 
 if __name__ == '__main__':
-    n = int(input("n: "))
+
+    """n = int(input("n: "))
     memory = [None]* (n+1)
     for i in range(0, n+1):
-        memory[i] = -1
+        memory[i] = -1"""
 
     #print(paren(n, memory))
 
-    fib_number = fib(n, memory)
-    print(fib_number)
+    """fib_number = fib(n, memory)
+    print(fib_number)"""
