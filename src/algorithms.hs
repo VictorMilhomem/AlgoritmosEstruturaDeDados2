@@ -191,3 +191,7 @@ poly_valiation :: Num t => [t] -> t -> Int -> t
 poly_valiation vector x n 
     | n == 0 = vector !! n
     | otherwise = x * ((vector !! n) + poly_valiation vector x (n-1))
+
+
+
+
