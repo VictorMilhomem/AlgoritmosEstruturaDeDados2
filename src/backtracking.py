@@ -14,6 +14,7 @@ def run_combinations():
     P = [None] * (k+1)
     combinations_bk(n, k, P, 0)
 
+##########################################################################
 
 def vogal(l):
 	return l=='a' or l=='e' or l=='i' or l=='o' or l=='u' or \
@@ -42,6 +43,8 @@ def run_senhas():
     P = [None]*7
     generate_passwords(P, 0, L)
 
+##########################################################################
+
 def perm(A, n, k, d, P, U):
     if d == k:
         print(P[1:k+1])
@@ -62,7 +65,17 @@ def run_perm():
     U = [False]*(n+1)
     perm(A, n, k, 0, P, U)
 
+##########################################################################
+
 def vector_comb(A,n,k,P, d):
+    """
+    A -> vetor de elementos
+    n -> tamanho do vetor
+    k -> numero natural
+    P -> vetor de partes
+    d -> numero de decisões
+    retorna todas as combinações dos elementos de A com tamanho k
+    """
     if d == k:
         print(P[1:k+1])
     else:
@@ -85,8 +98,15 @@ def run_vector_comb():
     P = [None]*(k+1)
     vector_comb(A, n, k, P, 0)
 
+##########################################################################
 
 def n_hook(n, P, k):
+    """
+    n -> quantidade de torres
+    P -> vetor das partes
+    k -> numero de decisões tomadas
+    retorna todos as posições das torres pacificas
+    """
     if k == n:
         for i in range(1,n+1):
             for j in  range(1, n+1):
@@ -106,8 +126,6 @@ def n_hook(n, P, k):
                 if P[i] == j:
                     ocorreu = True
                     break
-
-
             if not ocorreu:
                 P[k+1] = j
                 n_hook(n, P, k+1)
@@ -117,8 +135,15 @@ def run_n_hook():
     P = [None]*(n+1)
     n_hook(n, P, 0)
 
+##########################################################################
 
 def all_binary_size_n(n, P, d):
+    """
+    n -> tamanho dos binarios a serem gerados
+    P -> vetor das partes
+    d -> numero de decisões tomadas
+    retorna todos os binarios de tamanho n
+    """
     if n == d:
         binary = ''
         for i in range(1, n+1):
@@ -137,11 +162,36 @@ def run_all_binary():
     all_binary_size_n(n, P, 0)
 
 
+##########################################################################
+
+def dice_seq(n, m, P, d):
+    """
+    n -> quantidade de dados
+    m -> quantidade de faces
+    P -> vetor das partes
+    d -> numero de decisões
+    retorna todas as possiveis sequencias de resultados
+    """
+    if n == d:
+        print(P[1:])
+    else:
+        for i in range(1, m+1):
+            P[d+1] = i
+            dice_seq(n, m, P, d+1)
+
+
+def run_dice_seq():
+    n = int(input())
+    m = int(input())
+    P = [None]*(n+1)
+    dice_seq(n, m, P, 0)
+
+
 if __name__ == '__main__':
     #run_senhas()
     #run_perm()
     #run_vector_comb()
     #run_n_hook()
-    run_all_binary()
-
+    #run_all_binary()
+    run_dice_seq()
 
