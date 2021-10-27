@@ -187,11 +187,69 @@ def run_dice_seq():
     dice_seq(n, m, P, 0)
 
 
+###########################################################################
+
+def circular_perm(n, P, d):
+    """
+    n -> numero de pessoas
+    P -> vetor das partes
+    d-> numero de decisões tomadas
+    retorna todas as formas das pessoas sentarem na mesa
+    """
+    if n == d:
+        print(P[1:])
+
+    else:
+        for i in range(1, n):
+            usado = False
+            for j in range(1, d+1):
+                if P[j] == i:
+                    usado = True
+                    break
+
+            if not usado:
+                P[d+1] = i
+                circular_perm(n, P, d+1)
+
+def run_circular_perm():
+    n = int(input())
+    P = [None]*(n+1)
+    P[1] = n
+    circular_perm(n, P, 1)
+
+###########################################################################
+
+def sum_n(n, P, d, sum):
+    """
+    n -> numero natural
+    P -> vetor das partes
+    d -> decisões tomadas
+    retorna todas as formas de se somar naturais distintos em ordem ascendente com resultado n
+    """
+    
+    if sum == n:
+        for i in range(1, d+1):
+            if i > 1:
+                print("+", end="")
+            print(P[i], end="")
+        print()
+    else:
+        for i in range((P[d] if d > 0 else 0)+1, n-sum+1):
+            P[d+1] = i
+            sum_n(n, P, d+1, sum+i)
+
+def run_sum():
+    n = int(input())
+    P = [None]*(n+1)
+    sum_n(n, P, 0, 0)
+
+
 if __name__ == '__main__':
     #run_senhas()
     #run_perm()
     #run_vector_comb()
     #run_n_hook()
     #run_all_binary()
-    run_dice_seq()
-
+    #run_dice_seq()
+    #run_circular_perm()
+    run_sum()
