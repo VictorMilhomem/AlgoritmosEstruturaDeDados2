@@ -21,17 +21,23 @@ def vogal(l):
 			l=='A' or l=='E' or l=='I' or l=='O' or l=='U'
 		   
 def generate_passwords(P, k, L):
-	if 4 <= k <= 6:
-		for i in range(1,k+1):
-			print(P[i],end="")
-		print()
-		
-	if k < 6:
-		for c in L:
-			if (k==0) or (vogal(c) and not vogal(P[k])) or \
-				(not vogal(c) and vogal(P[k])):
-				P[k+1] = c
-				generate_passwords(P, k+1, L)
+    """
+    P -> vetor de partes
+    k -> numero de decisões tomadas
+    L -> letras maiusculas e minusculas em ASCII
+    retorna todas senahs possiveis de tamanho entre 4 e 6 (inclusive) contando apenas letras e numeros
+    """
+    if 4 <= k <= 6:
+    	for i in range(1,k+1):
+    		print(P[i],end="")
+    	print()
+    
+    if k < 6:
+    	for c in L:
+    		if (k==0) or (vogal(c) and not vogal(P[k])) or \
+    			(not vogal(c) and vogal(P[k])):
+    			P[k+1] = c
+    			generate_passwords(P, k+1, L)   
 
 def run_senhas():
     L = []
