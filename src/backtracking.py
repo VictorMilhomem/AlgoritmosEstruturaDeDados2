@@ -118,12 +118,30 @@ def run_n_hook():
     n_hook(n, P, 0)
 
 
+def all_binary_size_n(n, P, d):
+    if n == d:
+        binary = ''
+        for i in range(1, n+1):
+            binary += P[i]
+        print(binary)
+    else:
+        for i in range(0, 2):
+            P[d+1] = str(i)
+            all_binary_size_n(n, P, d+1)
+
+
+
+def run_all_binary():
+    n = int(input())
+    P = [None]*(n+1)
+    all_binary_size_n(n, P, 0)
 
 
 if __name__ == '__main__':
     #run_senhas()
     #run_perm()
     #run_vector_comb()
-    run_n_hook()
+    #run_n_hook()
+    run_all_binary()
 
 
